@@ -1,10 +1,10 @@
 import React from 'react';
-import { useRouteError , Link} from 'react-router-dom'
+import { useRouteError, Link } from 'react-router-dom'
 
 const Errorpage = () => {
 
   const error = useRouteError();
- 
+
 
   return (
     <div className='h-screen flex justify-center items-center'>
