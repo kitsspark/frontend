@@ -23,7 +23,7 @@ const Layout = () => {
             <Toaster />
 
             <header>
-                <nav className=' shadow flex  h-flex-wrap items-center md:py-2 justify-between w-full'>
+                <nav className=' shadow flex  min-h-16 flex-wrap items-center md:py-2 justify-between w-full'>
 
                     {/* logo */}
                     <div className='flex items-center font-bold  text-2xl  py-1 px-2' > Spark</div>
