@@ -1,16 +1,16 @@
 import { useState } from 'react'
 import { RouterProvider, Route,  createRoutesFromElements,createBrowserRouter } from 'react-router-dom'
-import Layout from '/src/layout.jsx'
-import Errorpage from '/src/pages/Errorpage.jsx'
-import Homepage from '/src/pages/Homepage.jsx'
-import Notes from '/src/pages/Notes.jsx'
-import Timetable from '/src/pages/Timetable.jsx'
-import Login from '/src/pages/Login.jsx'
-import Dashboard from '/src/pages/Dashboard.jsx'
+import Layout from './Layout.jsx'
+import Errorpage from './pages/Errorpage.jsx'
+import Homepage from './pages/Homepage.jsx'
+import Notes from './pages/Notes.jsx'
+import Timetable from './pages/Timetable.jsx'
+import Login from './pages/Login.jsx'
+
 // actions
 
-import { loginAction } from '/src/pages/Login.jsx'
-
+import { loginAction } from './pages/Login.jsx'
+import Dashboard from './pages/Dashboard.jsx'
 function App() {
 
 
