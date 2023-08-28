@@ -1,2 +1,2 @@
 
-export  const APIURL  = 'https://api.kitsspark.in/'
+export  const APIURL  = 'https://api.kitsspark.in'
