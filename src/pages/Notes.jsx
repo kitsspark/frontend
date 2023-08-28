@@ -59,7 +59,7 @@ const Notes = () => {
                 </div>
 
 
-                <div className='md:grid md:grid-cols-2'>
+                <div className='md:grid md:grid-cols-3'>
                     {
                         notesData.filter((subjectNotes) => {
                             return (subjectNotes.subjectName.toLowerCase().includes(Query.toLowerCase().trim()))
