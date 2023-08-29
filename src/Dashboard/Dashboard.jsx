@@ -3,7 +3,7 @@ import { Outlet, NavLink, useLocation } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 // if toggle is true  -> menu is close
 // if toggle is false -> menu is open
-const Layout = () => {
+const Dashboard = () => {
     let location = useLocation();
     useEffect(() => {
         if (toggle == false) {
@@ -46,19 +46,18 @@ const Layout = () => {
                             </li>
 
                             <li className='text-center'>
-                                <NavLink to="/notes" className={({ isActive }) =>
+                                <NavLink to="/dashboard/notes" className={({ isActive }) =>
                                     isActive ? "bg-blue-500 rounded text-black p-1 md:p-2 text-white font-semibold" : "  font-semibold hover:bg-blue-200 rounded p-1 md:p-2"
                                 }  >Notes</NavLink>
                             </li>
                             <li className='text-center'>
-                                <NavLink to="/timetables" className={({ isActive }) =>
+                                <NavLink to="/dashboard/timetables" className={({ isActive }) =>
                                     isActive ? "bg-blue-500 rounded text-black p-1 md:p-2 text-white font-semibold" : " font-semibold hover:bg-blue-200 rounded p-1 md:p-2"
                                 }  >Timetables</NavLink>
                             </li>
                             <li className='text-center'>
-                                <NavLink to="/login" className={({ isActive }) =>
-                                    isActive ? "bg-blue-500 rounded text-black p-1 md:p-2 text-white font-semibold " : " font-semibold hover:bg-blue-200 rounded p-1 md:p-2"
-                                } >Login</NavLink>
+                                <NavLink to="/login" className=" font-semibold hover:bg-blue-200 rounded p-1 md:p-2">
+                                    Logout</NavLink>
                             </li>
                         </ul>
                     </div>
@@ -83,4 +82,4 @@ const Layout = () => {
     );
 };
 
-export default Layout;
+export default Dashboard;
