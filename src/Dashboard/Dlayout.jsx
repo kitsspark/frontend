@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Outlet, NavLink, useLocation,Link,useNavigate } from 'react-router-dom';
+import { Outlet, NavLink, useLocation, Link, useNavigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 // if toggle is true  -> menu is close
 // if toggle is false -> menu is open
@@ -18,7 +18,7 @@ const Dlayout = () => {
     const handleMenu = () => {
         toggle ? setToggle(false) : setToggle(true);
     }
-    const logout  = ()=>{
+    const logout = () => {
         localStorage.removeItem("accessToken")
         navigate("/login")
     }
@@ -31,7 +31,7 @@ const Dlayout = () => {
                 <nav className=' shadow flex  min-h-16 flex-wrap items-center md:py-2 justify-between w-full'>
 
                     {/* logo */}
-                    <Link to ="/"><div className='flex items-center font-bold  text-2xl  py-1 px-2' > Spark</div></Link>
+                    <Link to="/"><div className='flex items-center font-bold  text-2xl  py-1 px-2' > Spark</div></Link>
 
                     {/* hamburger   menu */}
                     <div onClick={handleMenu} className='flex m-1  flex-col justify-evenly md:hidden  cursor-pointer '>
@@ -44,11 +44,11 @@ const Dlayout = () => {
                     <div className={`${toggle ? 'hidden  w-full md:flex md:block md:w-auto' : ' w-full md:flex md:block md:w-auto'}`} >
                         <ul className='  md:flex'>
                             <li className='text-center justify-around flex'>
-                                <NavLink to="/dashboard" className= "font-semibold hover:bg-blue-200 rounded p-1 md:p-2  ">
+                                <NavLink to="/dashboard" className="font-semibold hover:bg-blue-200 rounded p-1 md:p-2  ">
                                     Dashboard</NavLink>
                             </li>
                             <li className='text-center'>
-                                <button onClick={()=>{logout()}}  className=" bg-red-400 font-semibold hover:bg-blue-200 rounded p-1 md:p-2">
+                                <button onClick={() => { logout() }} className=" bg-red-400 font-semibold hover:bg-blue-200 rounded p-1 md:p-2">
                                     Logout</button>
                             </li>
                         </ul>

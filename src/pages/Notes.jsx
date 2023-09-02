@@ -6,7 +6,7 @@ import { useLoaderData, useNavigation } from 'react-router-dom';
 const SubjectNotes = (props) => {
 
     return (
-        <div className=' shadow p-3 m-1 rounded bg-white'>
+        <div className=' shadow p-3 m-5  relative rounded bg-white'>
             {/* subject name */}
             <div className='text-center uppercase font-semibold'> {props.subject.subjectName} </div>
             <div>
@@ -23,7 +23,8 @@ const SubjectNotes = (props) => {
                 </div>
             </div>
 
-            <div className='flex flex-row justify-between px-1 border-t-2 border-dotted'>
+            <div className='w-4 h-4'></div>
+            <div className='flex flex-row justify-between    absolute inset-x-0 bottom-0 px-1 border-t-2 border-dotted'>
                 {/* regulation and semister */}
                 <div>{props.subject.regulation}</div>
                 <div>{props.subject.semister}</div>
@@ -59,7 +60,7 @@ const Notes = () => {
                 </div>
 
 
-                <div className='md:grid md:grid-cols-3'>
+                <div className='md:grid w-full md:grid-cols-3'>
                     {
                         notesData.filter((subjectNotes) => {
                             return (subjectNotes.subjectName.toLowerCase().includes(Query.toLowerCase().trim()))

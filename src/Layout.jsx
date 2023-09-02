@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Outlet, NavLink, useLocation } from 'react-router-dom';
+import { Outlet, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Footer from './Footer';
+import { replace } from 'formik';
 // if toggle is true  -> menu is close
 // if toggle is false -> menu is open
 const Layout = () => {
@@ -14,6 +15,18 @@ const Layout = () => {
         }
 
     }, [location])
+
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        let token = localStorage.getItem('accessToken');
+        if (token) {
+
+            navigate('/dashboard', { replace: true })
+        }
+    })
+
     const [toggle, setToggle] = useState(true);
     const handleMenu = () => {
         toggle ? setToggle(false) : setToggle(true);
@@ -75,7 +88,7 @@ const Layout = () => {
                 <Outlet></Outlet>
             </main>
 
-            <Footer/>
+            <Footer />
 
         </>
     );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState} from 'react';
 import { Formik, Field, Form, ErrorMessage, FieldArray } from 'formik';
 import * as yup from 'yup';
 import { AxiosInstance } from '../utils/constants';
@@ -11,12 +11,16 @@ const validationSchema = yup.object({
 })
 
 const Login = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [loginStatus, setLoginStatus] = useState();
     return (
-        <div className='flex   justify-center h-full items-center '>
+        <div className='flex   justify-center h-screen items-center '>
 
             <div className='m-5 bg-gray-100 shadow p-5'>
 
+                     <div className='text-red-600 uppercase font-semibold '>
+                        <p> {loginStatus} </p>
+                    </div>
                 <div className='font-semibold text-2xl text-center'>
                     Login
                 </div>
@@ -28,7 +32,9 @@ const Login = () => {
 
                 validationSchema={validationSchema}
                 onSubmit={(values)=>{
+                    toast(' trying to logging');
                     AxiosInstance.post("/login",values).then((response)=>{
+                        setLoginStatus(response.data.message)
                         if(response.data.token){
                             localStorage.setItem('accessToken', response.data.token);
                             navigate("/dashboard" , {replace:true})
@@ -39,7 +45,6 @@ const Login = () => {
                 }}
                 >
                 <Form>
-
                     <div className='grid'>
                         <Field  className='focus:outline-none  focus:ring focus:border-blue-500 rounded my-3 p-1' type="email" placeholder='email' name='email' />
                         <ErrorMessage  className="text-red-900"name="email" />
