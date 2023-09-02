@@ -1,7 +1,17 @@
 import React from 'react';
-import { toast } from 'react-hot-toast';
-import { Form, redirect } from 'react-router-dom'
+import { Formik, Field, Form, ErrorMessage, FieldArray } from 'formik';
+import * as yup from 'yup';
+import { AxiosInstance } from '../utils/constants';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+
+const validationSchema = yup.object({
+    email : yup.string().email("Invalid email").required("Required"),
+    password: yup.string().required("Required")
+})
+
 const Login = () => {
+    const navigate = useNavigate()
     return (
         <div className='flex   justify-center h-full items-center '>
 
@@ -10,15 +20,35 @@ const Login = () => {
                 <div className='font-semibold text-2xl text-center'>
                     Login
                 </div>
-                <Form method='post' action='/login'>
+                <Formik 
+                initialValues={{
+                    email:"",
+                    password:""
+                }}
 
-                    <div>
-                        <input className='focus:outline-none  focus:ring focus:border-blue-500 rounded my-3 p-1' type="email" placeholder='email' name='email' />
+                validationSchema={validationSchema}
+                onSubmit={(values)=>{
+                    AxiosInstance.post("/login",values).then((response)=>{
+                        if(response.data.token){
+                            localStorage.setItem('accessToken', response.data.token);
+                            navigate("/dashboard" , {replace:true})
+                        }
+                    }).catch((error)=>{
+                        console.log(error)
+                    })
+                }}
+                >
+                <Form>
+
+                    <div className='grid'>
+                        <Field  className='focus:outline-none  focus:ring focus:border-blue-500 rounded my-3 p-1' type="email" placeholder='email' name='email' />
+                        <ErrorMessage  className="text-red-900"name="email" />
                     </div>
 
 
-                    <div>
-                        <input className='focus:outline-none  focus:ring focus:border-blue-500 rounded my-3 p-1' type="password" placeholder='password' name='password' />
+                    <div className='grid'>
+                        <Field className='focus:outline-none  focus:ring focus:border-blue-500 rounded my-3 p-1' type="password" placeholder='password' name='password' />
+                        <ErrorMessage  className="text-red-900"name="password" />
                     </div>
                     <div className='border-2 bg-gradient-to-r from-cyan-500 to-blue-100 text-center m-4 rounded  text-white '>
 
@@ -26,6 +56,7 @@ const Login = () => {
                     </div>
 
                 </Form>
+                </Formik>
             </div>
 
         </div>

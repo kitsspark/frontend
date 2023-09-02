@@ -2,6 +2,8 @@ import React from 'react'
 import { Formik, Field, Form, ErrorMessage, FieldArray } from 'formik';
 import * as yup from 'yup';
 import { AxiosInstance } from '../../utils/constants';
+import toast from 'react-hot-toast';
+import { useNavigate } from "react-router-dom";
 //subjectName , semister, regulation
 
 const validationSchema = yup.object({
@@ -16,6 +18,7 @@ const validationSchema = yup.object({
   });
 
 function AddNotes() {
+    const navigate = useNavigate()
   return (
     <>
     <Formik
@@ -28,15 +31,25 @@ function AddNotes() {
 
     onSubmit={async(values)=>{
         const response = await AxiosInstance.post("/notes",values);
-
         console.log(response)
+        if(response.data.message === "subject sucessfully created")
+        {
+          toast.success('Sucessfully Created!');
+          navigate("/dashboard/notes");
+        }
+        else
+        {
+          toast.error("Failed to create")
+
+
+        }
+        
     }}
 
     validationSchema = {validationSchema}
     >
     
     {(formik)=>{
-        console.log(formik.errors)
         return (    
 
     <Form>

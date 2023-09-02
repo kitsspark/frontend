@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet, NavLink, useLocation } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import Footer from './Footer';
 // if toggle is true  -> menu is close
 // if toggle is false -> menu is open
 const Layout = () => {
@@ -74,10 +75,7 @@ const Layout = () => {
                 <Outlet></Outlet>
             </main>
 
-            <footer className='flex justify-center items-center'>
-
-                made with love
-            </footer>
+            <Footer/>
 
         </>
     );
